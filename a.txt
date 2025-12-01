@@ -442,3 +442,45 @@ CI/CD FREESTYLE MAVEN WEB AUTOMATION PROJECT (3 pipeline)
 60.	Under "Select Initial Job", choose: SampleMavenProject_build
 61.	Click Apply and OK
 62.	run
+
+-------------------------------------------------------------
+JENKINS WEBHOOKS AND GMAIL
+JENKINS CI/CD USING WEBHOOK WITH JENKINS
+
+
+1.	Open CMD and run:
+	ngrok http 8080
+2.	Copy the HTTPS URL shown by ngrok (example: https://abc123.ngrok.io)
+3.	Open your GitHub repository and go to Settings → Webhooks
+4.	Click Add Webhook
+5.	In Payload URL, enter:
+	https://your-ngrok-url/github-webhook/
+6.	Set Content type to: application/json
+7.	Select the option: Just the push event
+8.	Click Add webhook
+9.	Open your Jenkins job and click Configure
+10.	Go to Build Triggers
+11.	Tick: GitHub hook trigger for GITScm polling
+12.	Save the job
+13.	Make any change to your GitHub project
+14.	Push the code to GitHub
+15.	Jenkins will automatically start building
+16.	Open your Google Account → Security
+17.	Turn on 2-step verification
+18.	Create a Gmail App Password (choose “Other”)
+19.	Copy the 16-character app password
+20.	Open Jenkins → Manage Jenkins → Configure System
+21.	Scroll to “E-mail Notification”
+22.	Fill the fields:
+	SMTP Server: smtp.gmail.com
+	Use SMTP Authentication: Yes
+	Username: your Gmail address
+	Password: your 16-character app password
+	Use SSL: Yes
+	Port: 465
+23.	Click Send test email and verify that you receive it
+24.	Open your Jenkins job again → Configure
+25.	Go to Post-build Actions
+26.	Add: Editable Email Notification
+27.	Enter recipient email addresses
+28.	Save the job and run a build
