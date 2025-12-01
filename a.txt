@@ -378,4 +378,67 @@ CI/CD FREESTYLE MAVEN JAVA PROJECT
 35. click on run
 
 
-CI/CD FREESTYLE MAVEN WEB AUTOMATION PROJECT
+-------------------------------------------------------------
+CI/CD FREESTYLE MAVEN WEB AUTOMATION PROJECT (3 pipeline)
+1.	Open localhost:8080
+2.	Enter credentials
+3.	Click on "New Item"
+4.	Type: SampleMavenProject_build
+5.	Select "Freestyle project" and click OK
+6.	Scroll to "Source Code Management" and select "Git"
+7.	Enter the GitHub repository link
+8.	In "Branches to build", type either */main or */master
+9.	Go to "Build Steps" and click on "Add build step"
+10.	Select "Invoke top-level Maven targets"
+11.	In Maven Version, select MAVEN_HOME
+12.	In Goals, type: clean
+13.	Go to Build Steps again and click on "Add build step"
+14.	Select "Invoke top-level Maven targets"
+15.	In Maven Version, select MAVEN_HOME
+16.	In Goals, type: install
+17.	Click "Add post-build action" and select "Archive the artifacts"
+18.	In "Files to archive", type: */
+19.	Click "Add post-build action" and select "Build other projects"
+20.	In Projects to build, type: SampleMavenProject_test
+21.	Click Apply and Save
+22.	Click on "New Item"
+23.	Type: SampleMavenProject_test
+24.	Select "Freestyle project" and click OK
+25.	Scroll to "Build Environment"
+26.	Enable "Delete workspace before build starts"
+27.	Click "Add build step" and select "Copy artifacts from other projects"
+28.	In Project name, type: SampleMavenProject_build
+29.	Select "Stable build only"
+30.	In "Artifacts to copy", type: */
+31.	Go to Build Steps and click "Add build step"
+32.	Select "Invoke top-level Maven targets"
+33.	In Maven Version, select MAVEN_HOME
+34.	In Goals, type: test
+35.	Click "Add post-build action" and select "Archive the artifacts"
+36.	In "Files to archive", type: */
+37.	Click "Add post-build action" and select "Build other projects"
+38.	Type: SampleMavenProject_deploy
+39.	Click Apply and Save
+40.	Click on "New Item"
+41.	Type: SampleMavenProject_deploy
+42.	Select "Freestyle project" and click OK
+43.	Click "Add build step" and select "Copy artifacts from other projects"
+44.	In Project name, type: SampleMavenProject_test
+45.	In "Artifacts to copy", type: */.war
+46.	Click "Add build step" and select "deploy war/ear"
+47.	War */.war and context path as samplewebprojectmaven
+48.	In containers add tomcat and go to credentials
+49.	Click jenkins
+50.	Write username and pw
+51.	Choose credentials
+52.	Give the url localhost:8080
+53.	Click "Add post-build action" and select "Archive the artifacts"
+54.	In "Files to archive", type: */
+55.	Click Apply and Save  Go to Dashboard
+56.	Click on the + symbol (New View)
+57.	Type: SampleMavenProject_pipeline
+58.	Select "Build Pipeline View"
+59.	Scroll to "Pipeline Flow"
+60.	Under "Select Initial Job", choose: SampleMavenProject_build
+61.	Click Apply and OK
+62.	run
